@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block web_title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/zbaa.css') }}">
+</head>
+<body>
+<h4>{% block table_title %}{% endblock %}</h4>
+{% if is_renew == True %}
+    <h5 style="color: red;">数据已更新</h5>
+{% else %}
+    <h5 style="color: red;"></h5>
+{% endif %}
+<h5 style="color: red;">数据更新时间：{{ update_time }}</h5>
+<h5>如果没加载出来，请多刷新几次</h5>
+<button style="background-color: burlywood; color: white;" onclick="redirectToIndex()">返回主页</button>
+<form action={% block form_action %}{% endblock %} method="POST" id="flightFilter" style="display: flex;">
+    <table>
+        <tr>
+            <td>航空公司名称：</td>
+            <td><input type="text" name="airline"></td>
+        </tr>
+        <tr>
+            <td>航班号：</td>
+            <td><input type="text" name="flightnumber"></td>
+        </tr>
+        <tr>
+            <td>机型：</td>
+            <td><input type="text" name="aircrafttype"></td>
+        </tr>
+        <tr>
+            <td>起飞/目的地：</td>
+            <td><input type="text" name="location"></td>
+        </tr>
+        <tr>
+            <td>停机位：</td>
+            <td><input type="text" name="parkingbay"></td>
+        </tr>
+        <tr hidden>
+            <td>状态：</td>
+            <td><input type="text" name="status"></td>
+        </tr>
+        <tr>
+            <td>
+                <input style="background-color: gray; color: white;" type="submit" value="刷新" onclick="refrash()">
+                <input style="background-color: #007bff; color: white;" type="submit" value="一键筛选宽体机" onclick="quaryWideBody()">
+                <input style="background-color: #007bff; color: white;" type="submit" value="一键筛选外航" onclick="quaryForeignAirline()">
+            </td>
+            <td>
+                <input style="background-color: gray; color: white;" type="submit" value="筛选全部航班">
+                <input style="background-color: gray; color: white;" type="submit" value="仅筛选计划航班" onclick="hideFinishFlight()">
+            </td>
+        </tr>
+    </table>
+</form>
+
+<table id="flightinfotable" border="1">
+    <tr>
+        <th>{% block th_time %}{% endblock %}</th>
+        <th>航空公司</th>
+        <th>航班号</th>
+        <th>机型</th>
+        <th>{% block dest_or_arr_place %}{% endblock %}</th>
+        <th>停机位</th>
+        <th>状态</th>
+    </tr>
+    {% block table_content %}
+    {% endblock %}
+</table>
+
+ <script>
+        function refrash() {
+            var form = document.getElementById("flightFilter");
+            form.airline.value = '';
+            form.flightnumber.value = '';
+            form.aircrafttype.value = '';
+            form.location.value = '';
+            form.parkingbay.value = '';
+            form.submit();
+        }
+        function hideFinishFlight() {
+            var form = document.getElementById("flightFilter");
+            form.status.value = '1';
+            form.submit();
+        }
+        function quaryWideBody() {
+            var form = document.getElementById("flightFilter");
+            form.status.value = '2';
+            form.submit();
+        }
+        function quaryForeignAirline() {
+            var form = document.getElementById("flightFilter");
+            form.status.value = '3';
+            form.submit();
+        }
+        function redirectToIndex() {
+            var currentUrl = window.location.href;
+            var baseUrl = currentUrl.split('/').slice(0, -1).join('/');
+            var homePageUrl = baseUrl + '/';
+            window.location.href = homePageUrl;
+        }
+ </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+{% extends "zbaa.html" %}
+{% block web_title %}
+    ZBAA昨日出港航班列表
+{% endblock %}
+{% block table_title %}
+    ZBAA昨日出港航班
+{% endblock %}
+{% block form_action %}
+    {{ url_for('zbaa_yesterday_dep') }}
+{% endblock %}
+{% block th_time %}
+    离港时间
+{% endblock %}
+{% block dest_or_arr_place %}
+    目的地
+{% endblock %}
+{% block table_content %}
+    {% for flight in flightlist %}
+        {% if flight['fliStruts'] != None and "取消" in flight['fliStruts'] %}
+            <tr style="background-color:red; color: white;">
+                <td>{{ flight['sdt'] }}</td>
+                <td>{{ flight['airlineCn'] }}</td>
+                <td>{{ flight['flightNo'] }}</td>
+                <td>{{ flight['airType'] }}</td>
+                <td>{{ flight['start_or_dest'] }}</td>
+                {% if flight['park1'] == None %}
+                    <td></td>
+                {% else %}
+                    <td>{{ flight['park1'] }}</td>
+                {% endif %}
+                <td>{{ flight['fliStruts'] }}</td>
+            </tr>
+        {% elif flight['fliStruts'] != None and "已于" in flight['fliStruts'] %}
+            <tr style="background-color:gray; color: white;">
+                <td>{{ flight['sdt'] }}</td>
+                <td>{{ flight['airlineCn'] }}</td>
+                <td>{{ flight['flightNo'] }}</td>
+                <td>{{ flight['airType'] }}</td>
+                <td>{{ flight['start_or_dest'] }}</td>
+                {% if flight['park1'] == None %}
+                    <td></td>
+                {% else %}
+                    <td>{{ flight['park1'] }}</td>
+                {% endif %}
+                <td>{{ flight['fliStruts'] }}</td>
+            </tr>
+        {% else %}
+            <tr style="background-color:white; color: black;">
+                <td>{{ flight['sdt'] }}</td>
+                <td>{{ flight['airlineCn'] }}</td>
+                <td>{{ flight['flightNo'] }}</td>
+                <td>{{ flight['airType'] }}</td>
+                <td>{{ flight['start_or_dest'] }}</td>
+                {% if flight['park1'] == None %}
+                    <td></td>
+                {% else %}
+                    <td>{{ flight['park1'] }}</td>
+                {% endif %}
+                {% if flight['fliStruts'] == None %}
+                    <td></td>
+                {% else %}
+                    <td>{{ flight['fliStruts'] }}</td>
+                {% endif %}
+            </tr>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

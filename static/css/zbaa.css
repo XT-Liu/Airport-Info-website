@@ -1,0 +1,47 @@
+/* 设置页面整体的字体和背景颜色 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+/* 设置表格的边框样式和单元格对齐方式 */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+/* 设置表单元素的宽度和间距 */
+input[type="text"] {
+    width: 100%;
+    padding: 6px;
+    margin-bottom: 10px;
+}
+
+/* 设置按钮的背景颜色、边框样式、字体颜色和悬停效果 */
+input[type="submit"], button {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover, button:hover {
+    background-color: #0056b3;
+}
+
+.finish-flight{
+    color: gray;
+}
+.schedule-flight{
+    color: black;
+}
+.cancel-flight{
+    color: red;
+}

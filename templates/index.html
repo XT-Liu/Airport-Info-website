@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ZBAA航班查询</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #666;
+            margin-top: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .container button {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .container button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 自适应屏幕布局 */
+        @media screen and (max-width: 600px) {
+            /* 将按钮的宽度设置为100% */
+            .container button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>ZBAA航班查询</h1>
+    <h3>Design By Unbeliverpool</h3>
+    <h3>随缘更新，欢迎体验</h3>
+    <div class="container">
+        <button onclick="redirectToPage1()">昨日进港航班查询</button>
+        <button onclick="redirectToPage2()">昨日离港航班查询</button>
+        <button onclick="redirectToPage3()">今日进港航班查询</button>
+        <button onclick="redirectToPage4()">今日离港航班查询</button>
+        <button onclick="redirectToPage5()">明日进港航班查询</button>
+        <button onclick="redirectToPage6()">明日离港航班查询</button>
+    </div>
+
+    <script>
+        function redirectToPage1() {
+            window.location.href = "/zbaa_yesterday_arr";
+        }
+
+        function redirectToPage2() {
+            window.location.href = "/zbaa_yesterday_dep";
+        }
+
+        function redirectToPage3() {
+            window.location.href = "/zbaa_today_arr";
+        }
+
+        function redirectToPage4() {
+            window.location.href = "/zbaa_today_dep";
+        }
+
+        function redirectToPage5() {
+            window.location.href = "/zbaa_tomorrow_arr";
+        }
+
+        function redirectToPage6() {
+            window.location.href = "/zbaa_tomorrow_dep";
+        }
+    </script>
+</body>
+</html>
